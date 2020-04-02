@@ -6,6 +6,7 @@ data = json.load(open('input.json', 'r'))
 # Your code here
 
 dollar_sign_regex = re.compile(r'^\$(.+)$')
+out_list = []
 total = 0
 for rec in data:
     bal_string = rec['balance']
@@ -19,7 +20,9 @@ for rec in data:
 
     total += this_balance
     total_as_string = str(total.format('en_US'))
-    # print(f'bal_string: {bal_string}, total: {total}, total_as_string: {total_as_string}')
     rec['balance'] = total_as_string
-    # print(str(total.amount))
-    print(json.dumps(rec))
+
+    out_list.append(rec)
+
+with open('output_a.json', 'w') as f:
+    json.dump(out_list, f, indent=4)
