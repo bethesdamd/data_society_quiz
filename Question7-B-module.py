@@ -3,22 +3,21 @@ import re
 from money import Money
 
 # Writes total to simulated message queue (as string)
-def write_total_to_simulated_queue(money_amount):
+def write_total_to_simulated_queue(money):
     with open('total_queue.txt', 'w') as f:
-        f.write(money_amount.format('en_US'))
+        f.write(str(money.amount))
 
 # Read total from queue
 # returns as formatted string e.g. '$44.15'
 def read_total_from_simulated_queue():
     with open('total_queue.txt', 'r') as f:
         v = f.readline().strip()
-        return v.format('en_US')
+        return Money(v, currency='USD').format('en_US')
 
 
-x = Money('44.00', currency='USD')
+x = Money('1234144.12', currency='USD')
 write_total_to_simulated_queue(x)
 print(read_total_from_simulated_queue())
-
 
 def process(rec):
     dollar_sign_regex = re.compile(r'^\$(.+)$')
