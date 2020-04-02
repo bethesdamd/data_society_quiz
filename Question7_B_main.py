@@ -1,6 +1,6 @@
 # Question 7 B
 # This is the main program which calls a simulated service,
-# called process() in module Question7_B_module
+# called process() in module Question7_B_module 
 
 from money import Money
 import Question7_B_module as q

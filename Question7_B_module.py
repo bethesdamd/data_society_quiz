@@ -1,8 +1,11 @@
+# Supporting code for Question7 B
+
+
 import json
 import re
 from money import Money
 
-# Writes total to simulated message queue (as string)
+# Writes total to simulated message queue (as plain string)
 def write_total_to_simulated_queue(money):
     with open('total_queue.txt', 'w') as f:
         f.write(str(money.amount))
@@ -14,7 +17,7 @@ def read_total_from_simulated_queue():
         v = f.readline().strip()
         return Money(v, currency='USD')
 
-
+# 
 def process(rec):
     dollar_sign_regex = re.compile(r'^\$(.+)$')
     bal_string = rec['balance']
